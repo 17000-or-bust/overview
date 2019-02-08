@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import RestaurantInfo from "./RestaurantInfo.jsx";
+import googleKey from '../../../api';
 
 
 const boldText = {
@@ -77,7 +78,7 @@ class App extends React.Component {
 			<div>
 				{/* THIS JSX CONTAINS MAP, CROSS STREET AND NEIGHBORHOOD */}
 				<div style={{display: "flex", flexDirection: "column", border: ".5px solid grey", padding: "5px"}}>
-					<img src={`https://maps.googleapis.com/maps/api/staticmap?center=${rest.latitude},${rest.longitude}&zoom=15&size=288x144&maptype=roadmap&markers=color:0x2495BF|%7C${rest.latitude},${rest.longitude}&key=AIzaSyAaY0lxea4lC6Iby8aEibDOlXl8hyAM5lw`}></img>
+					<img src={`https://maps.googleapis.com/maps/api/staticmap?center=${rest.latitude},${rest.longitude}&zoom=15&size=288x144&maptype=roadmap&markers=color:0x2495BF|%7C${rest.latitude},${rest.longitude}&key=${googleKey}`}></img>
 					<div style={{display:'flex', paddingTop:"15px"}}>
 						{doodles[0]}
 						<a href='' style={{fontSize: "14px", fontWeight: "500", lineHeight: "20px", paddingLeft: "5px", color: "#da3743", fontFamily: "BlinkMacSystemFont", textDecoration: this.state.hover ? "underline" : "none" } } onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>{rest.street_address}</a>
