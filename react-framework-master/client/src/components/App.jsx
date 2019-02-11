@@ -33,12 +33,10 @@ const doodles = [
   <svg width="24" height="24" viewBox="0 0 24 24"><g fill="none" fillRule="evenodd"><rect width="24" height="24"></rect><g transform="rotate(45 5.374 17.754)"><path stroke="#333333" strokeWidth="2" d="M1,4.23686384 L1,16 C1,16.5522847 1.44771525,17 2,17 L10,17 C10.5522847,17 11,16.5522847 11,16 L11,4.31096383 L9.65103691,1.55975554 C9.48305062,1.21714773 9.134734,1 8.75315896,1 L3.23618407,1 C2.85738175,1 2.5110964,1.21403622 2.34171932,1.55286154 L1,4.23686384 Z"></path><rect width="4" height="4" x="4" y="4" fill="#333333" rx="2"></rect></g></g></svg>,
   <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" style={{ background: 'rgb(255, 255, 255)' }}><title>icon/ic_new_window</title><desc>Created with Sketch.</desc><defs></defs><g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="icon/ic_new_window"><g id="ic_new_window"><rect id="boundary" x="0" y="0" width="24" height="24"></rect><path d="M19.5,4 L14.5,4 C14.2238576,4 14,4.22385763 14,4.5 L14,5.5 C14,5.77614237 14.2238576,6 14.5,6 L16.59,6 L10.76,11.83 C10.6653437,11.9238833 10.6121008,12.0516812 10.6121008,12.185 C10.6121008,12.3183188 10.6653437,12.4461167 10.76,12.54 L11.47,13.25 C11.5638833,13.3446563 11.6916812,13.3978992 11.825,13.3978992 C11.9583188,13.3978992 12.0861167,13.3446563 12.18,13.25 L18,7.41 L18,9.5 C18,9.77614237 18.2238576,10 18.5,10 L19.5,10 C19.7761424,10 20,9.77614237 20,9.5 L20,4.5 C20,4.22385763 19.7761424,4 19.5,4 Z" id="Shape" fill="#333333" fillRule="nonzero"></path><path d="M19.5,14 L18.5,14 C18.2238576,14 18,14.2238576 18,14.5 L18,18 L6,18 L6,6 L9.5,6 C9.77614237,6 10,5.77614237 10,5.5 L10,4.5 C10,4.22385763 9.77614237,4 9.5,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,14.5 C20,14.2238576 19.7761424,14 19.5,14 Z" id="Shape" fill="#333333" fillRule="nonzero"></path></g></g></g></svg>,
   <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" style={{ background: 'rgb(255, 255, 255)' }}><title>icon/ic_phone</title><desc>Created with Sketch.</desc><defs></defs><g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="icon/ic_phone"><g id="ic_phone"><rect id="Rectangle-path" x="0" y="0" width="24" height="24"></rect><path d="M3.6078908,10.550251 C2.61923908,11.0680258 1.99972271,12.0918108 1.99971837,13.2078404 L1.99971837,15.6072816 C1.99971837,16.1595664 2.44743362,16.6072816 2.99971837,16.6072816 L6.3793488,16.6072816 C6.82186328,16.6072816 7.21175771,16.3164463 7.33787494,15.892282 C7.82877775,14.2412802 8.56739585,13.2739483 9.74971837,13.2739483 L10.3982265,13.2739469 L10.9997198,13.2739459 C11.9349601,13.2739449 11.9349601,13.2739449 12.2508894,13.273949 C13.457624,13.275362 14.2165836,14.245409 14.6845206,15.8821632 C14.8072329,16.3113873 15.1995808,16.6072842 15.6460041,16.6072816 L18.9997184,16.6072816 C19.5520031,16.6072816 19.9997184,16.1595664 19.9997184,15.6072816 L19.9997184,13.2078497 C19.9997184,12.09182 19.3802043,11.0680343 18.3915552,10.5502559 C15.911882,9.25160463 13.451313,8.60728164 10.9997184,8.60728164 C8.54812677,8.60728164 6.08756091,9.25160303 3.6078908,10.550251 Z" id="Shape" stroke="#333333" strokeWidth="2" transform="translate(10.999718, 12.607282) rotate(-135.000000) translate(-10.999718, -12.607282) "></path></g></g></g></svg>
-
-
 ];
 
 const titles = [
-  'Hours of operation',
+  // 'Hours of operation',
   'Cuisines',
   'Dining Style',
   'Dress code',
@@ -46,9 +44,18 @@ const titles = [
   'Executice chef',
   'Entertainment',
   'Additional',
-  'Website',
-  'Phone number',
 ];
+
+const restFields = [
+  // ['brunch_hrs', 'dinner_hrs', 'lunch_hrs'],
+  'food_type',
+  'dining_style',
+  'dress_code',
+  'payment_options',
+  'chef',
+  'entertainment',
+  'additional_info',
+]
 
 class App extends React.Component {
   constructor(props) {
@@ -57,10 +64,16 @@ class App extends React.Component {
       restaurant: [],
       hover: false,
       hoverNeighbor: false,
+      hoverViewMore: false,
+      hoverWebsite: false,
+      showMore: false,
     };
     this.getRestaurantByObjectId = this.getRestaurantByObjectId.bind(this);
     this.toggleHover = this.toggleHover.bind(this);
     this.toggleNeighborHover = this.toggleNeighborHover.bind(this);
+    this.toggleViewMoreHover = this.toggleViewMoreHover.bind(this);
+    this.toggleWebsiteHover = this.toggleWebsiteHover.bind(this);
+    this.showMore = this.showMore.bind(this);
   }
 
   componentDidMount() {
@@ -69,7 +82,7 @@ class App extends React.Component {
 
   getRestaurantByObjectId() {
     $.ajax({
-      // hardcoded 5
+      // hardcoded 17
       url: '/overview/17',
       method: 'GET',
       contentType: 'application/json',
@@ -93,8 +106,26 @@ class App extends React.Component {
     });
   }
 
+  toggleWebsiteHover() {
+    this.setState({
+      hoverWebsite: !this.state.hoverWebsite,
+    });
+  }
+
+  toggleViewMoreHover() {
+    this.setState({
+      hoverViewMore: !this.state.hoverViewMore,
+    });
+  }
+
+  showMore() {
+    this.setState({
+      showMore: !this.state.showMore,
+    })
+  }
 
   render() {
+    // TODO: Break up into smaller componenets
     const rest = this.state.restaurant;
     return (
       <div>
@@ -102,7 +133,7 @@ class App extends React.Component {
         <div style={{
           display: 'flex',
           flexDirection: 'column',
-          border: '.5px solid grey',
+          border: '1px solid grey',
           padding: '5px',
         }}>
           <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${rest.latitude},${rest.longitude}&zoom=15&size=288x144&maptype=roadmap&markers=color:0x2495BF|%7C${rest.latitude},${rest.longitude}&key=${googleKey}`}></img>
@@ -140,18 +171,85 @@ class App extends React.Component {
           fontWeight: '400',
           lineHeight: '20px',
           paddingLeft: '29px',
+          cursor: "pointer",
           textDecoration: this.state.hoverNeighbor ? 'underline' : 'none',
         }}
         onMouseEnter={this.toggleNeighborHover}
         onMouseLeave={this.toggleNeighborHover}>{rest.neighborhood}</div>
+
+        {/* HOURS OF OPERATION */}
+        <div style={{ display: 'flex', paddingTop: '15px' }}>
+          {doodles[3]}
+          <div style={boldText}>Hours of operation</div>
+        </div>
+        <div style={subText}>BRUNCH:</div>
+        <div style={subText}>{"Monday to Friday " + rest.brunch_hrs}</div>
+        <div style={subText}>LUNCH:</div>
+        <div style={subText}>{"Monday to Friday " + rest.lunch_hrs}</div>
+        <div style={subText}>DINNER:</div>
+        <div style={subText}>{"Monday to Friday " + rest.dinner_hrs}</div>
+
+        {/* REMAINING INFO (MINUS WEBSITE AND PHONE) */}
         {titles.map(title => <RestaurantInfo
-        boldText={boldText}
-        subText={subText}
-        rest={rest}
-        doodles={doodles}
-        title={title}
-        key={titles.indexOf(title)}
-        index={titles.indexOf(title)}/>)}
+          boldText={boldText}
+          subText={subText}
+          rest={rest}
+          doodles={doodles}
+          title={title}
+          restFields={restFields}
+          key={titles.indexOf(title)}
+          index={titles.indexOf(title)}/>
+        )}
+
+        {/* WEBSITE */}
+        <div style={{ display: this.state.showMore ? 'flex' : 'none', paddingTop: '15px' }}>
+          {doodles[11]}
+          <div style={boldText}>Website</div>
+        </div>
+        <div style={{
+          display: this.state.showMore ? 'flex' : 'none',
+          justifyContent: 'left',
+          fontSize: '14px',
+          fontWeight: '400',
+          lineHeight: '20px',
+          paddingLeft: '29px',
+          cursor: "pointer",
+          textDecoration: this.state.hoverWebsite ? 'underline' : 'none',
+        }}
+        onMouseEnter={this.toggleWebsiteHover}
+        onMouseLeave={this.toggleWebsiteHover}>{rest.website}</div>
+
+        {/* PHONE NUMBER */}
+        <div style={{ display: this.state.showMore ? 'flex' : 'none', paddingTop: '15px' }}>
+          {doodles[12]}
+          <div style={boldText}>Phone number</div>
+        </div>
+        <div style={{ display: this.state.showMore ? 'flex' : 'none'}}>
+          <div style={subText}>{rest.phone_number}</div>
+        </div>
+
+
+        {/* VIEW MORE: */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'left',
+          fontSize: '14px',
+          fontWeight: '400',
+          lineHeight: '20px',
+          color: '#da3743',
+          fontFamily: 'BlinkMacSystemFont',
+          paddingTop: "15px",
+          textDecoration: this.state.hoverViewMore ? 'underline' : 'none',
+          cursor: "pointer",
+        }} 
+        onMouseEnter={this.toggleViewMoreHover} 
+        onMouseLeave={this.toggleViewMoreHover}
+        onClick={this.showMore}>
+        
+        {this.state.showMore ? "- View less" : "+ View more"}
+      
+        </div>
+
       </div>
     );
   }
