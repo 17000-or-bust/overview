@@ -1,8 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color:rgb(255, 255, 255)
-   /* #f1f2f4; */
-  /* color: seagreen; */
 }
 
 #main {
@@ -12,4 +10,3 @@ body {
   margin: auto;
   text-align: center;
 }
-

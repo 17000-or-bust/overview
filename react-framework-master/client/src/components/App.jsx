@@ -2,22 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 import RestaurantInfo from './RestaurantInfo.jsx';
 import googleKey from '../../../api';
+import style from '../../../style';
 
-const boldText = {
-  fontSize: '14px',
-  fontWeight: '700',
-  lineHeight: '20px',
-  paddingLeft: '5px',
-};
-
-const subText = {
-  display: 'flex',
-  justifyContent: 'left',
-  fontSize: '14px',
-  fontWeight: '400',
-  lineHeight: '20px',
-  paddingLeft: '29px',
-};
 
 const doodles = [
   <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" style={{ background: 'rgb(255, 255, 255)' }}><title>icon/ic_location</title><desc>Created with Sketch.</desc><defs></defs><g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="icon/ic_location"><g id="ic_location"><rect id="boundary" x="0" y="0" width="24" height="24"></rect><path d="M12,9 C12.5522847,9 13,9.44771525 13,10 C13,10.5522847 12.5522847,11 12,11 C11.4477153,11 11,10.5522847 11,10 C11,9.44771525 11.4477153,9 12,9 L12,9 Z M12,7 C10.3431458,7 9,8.34314575 9,10 C9,11.6568542 10.3431458,13 12,13 C13.6568542,13 15,11.6568542 15,10 C15,8.34314575 13.6568542,7 12,7 Z" id="Shape" fill="#333333" fillRule="nonzero"></path><path d="M12,4 C15.3137085,4 18,6.6862915 18,10 C18,11.21 17.2,14 12,19.21 C6.8,14 6,11.21 6,10 C6,6.6862915 8.6862915,4 12,4 L12,4 Z M12,2 C7.581722,2 4,5.581722 4,10 C4,12.8133333 6.43333333,16.59 11.3,21.33 L11.3,21.33 C11.6888435,21.7111429 12.3111565,21.7111429 12.7,21.33 C17.5666667,16.59 20,12.8133333 20,10 C20,5.581722 16.418278,2 12,2 Z" id="Shape" fill="#333333" fillRule="nonzero"></path></g></g></g></svg>,
@@ -36,7 +22,6 @@ const doodles = [
 ];
 
 const titles = [
-  // 'Hours of operation',
   'Cuisines',
   'Dining Style',
   'Dress code',
@@ -47,7 +32,6 @@ const titles = [
 ];
 
 const restFields = [
-  // ['brunch_hrs', 'dinner_hrs', 'lunch_hrs'],
   'food_type',
   'dining_style',
   'dress_code',
@@ -127,72 +111,68 @@ class App extends React.Component {
   render() {
     // TODO: Break up into smaller componenets
     const rest = this.state.restaurant;
+
+    // DYNAMIC CSS DEFINITIONS
+
+    // VIEW MORE
+    style.viewMore.textDecoration = this.state.hoverViewMore ? 'underline' : 'none';
+    const newViewMore = Object.assign({}, style.viewMore);
+    // WEBSITE
+    style.website.textDecoration = this.state.hoverWebsite ? 'underline' : 'none';
+    style.website.display = this.state.showMore ? 'flex' : 'none';
+    const newWebiste = Object.assign({}, style.website);
+    // NEIGHBORHOOD
+    style.neighborhood.textDecoration = this.state.hoverNeighbor ? 'underline' : 'none';
+    const newNeighborhood = Object.assign({}, style.neighborhood);
+    // ADDRESS
+    style.address.textDecoration = this.state.hover ? 'underline' : 'none';
+    const newAddress = Object.assign({}, style.address);
+
     return (
+
       <div>
         {/*GOOGLE MAP API*/}
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          border: '1px solid grey',
-          padding: '5px',
-        }}>
+        <div style={style.googleMap}>
           <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${rest.latitude},${rest.longitude}&zoom=15&size=288x144&maptype=roadmap&markers=color:0x2495BF|%7C${rest.latitude},${rest.longitude}&key=${googleKey}`}></img>
-          <div style={{ display: 'flex', paddingTop: '15px' }}>
+          <div style={style.padTop}>
             {doodles[0]}
-            <a href='' style={{
-              fontSize: '14px',
-              fontWeight: '500',
-              lineHeight: '20px',
-              paddingLeft: '5px',
-              color: '#da3743',
-              fontFamily: 'BlinkMacSystemFont',
-              textDecoration: this.state.hover ? 'underline' : 'none',
-            }} onMouseEnter={this.toggleHover}
+            <a href='' style={newAddress} onMouseEnter={this.toggleHover}
              onMouseLeave={this.toggleHover}>{rest.street_address}</a>
           </div>
         </div>
 
         {/* CROSS STREET */}
-        <div style={{ display: 'flex', paddingTop: '15px' }}>
+        <div style={style.padTop}>
           {doodles[1]}
-          <div style={boldText}>Cross street</div>
+          <div style={style.boldText}>Cross street</div>
         </div>
-        <div style={subText}>{rest.cross_street}</div>
+        <div style={style.subText}>{rest.cross_street}</div>
 
         {/* NEIGHBORHOOD */}
-        <div style={{ display: 'flex', paddingTop: '15px' }}>
+        <div style={style.padTop}>
           {doodles[2]}
-          <div style={boldText}>Neighborhood</div>
+          <div style={style.boldText}>Neighborhood</div>
         </div>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'left',
-          fontSize: '14px',
-          fontWeight: '400',
-          lineHeight: '20px',
-          paddingLeft: '29px',
-          cursor: "pointer",
-          textDecoration: this.state.hoverNeighbor ? 'underline' : 'none',
-        }}
+        <div style={newNeighborhood}
         onMouseEnter={this.toggleNeighborHover}
         onMouseLeave={this.toggleNeighborHover}>{rest.neighborhood}</div>
 
         {/* HOURS OF OPERATION */}
-        <div style={{ display: 'flex', paddingTop: '15px' }}>
+        <div style={style.padTop}>
           {doodles[3]}
-          <div style={boldText}>Hours of operation</div>
+          <div style={style.boldText}>Hours of operation</div>
         </div>
-        <div style={subText}>BRUNCH:</div>
-        <div style={subText}>{"Monday to Friday " + rest.brunch_hrs}</div>
-        <div style={subText}>LUNCH:</div>
-        <div style={subText}>{"Monday to Friday " + rest.lunch_hrs}</div>
-        <div style={subText}>DINNER:</div>
-        <div style={subText}>{"Monday to Friday " + rest.dinner_hrs}</div>
+        <div style={style.subText}>BRUNCH:</div>
+        <div style={style.subText}>{"Monday to Friday " + rest.brunch_hrs}</div>
+        <div style={style.subText}>LUNCH:</div>
+        <div style={style.subText}>{"Monday to Friday " + rest.lunch_hrs}</div>
+        <div style={style.subText}>DINNER:</div>
+        <div style={style.subText}>{"Monday to Friday " + rest.dinner_hrs}</div>
 
         {/* REMAINING INFO (MINUS WEBSITE AND PHONE) */}
         {titles.map(title => <RestaurantInfo
-          boldText={boldText}
-          subText={subText}
+          style={style.boldText}
+          subText={style.subText}
           rest={rest}
           doodles={doodles}
           title={title}
@@ -204,44 +184,25 @@ class App extends React.Component {
         {/* WEBSITE */}
         <div style={{ display: this.state.showMore ? 'flex' : 'none', paddingTop: '15px' }}>
           {doodles[11]}
-          <div style={boldText}>Website</div>
+          <div style={style.boldText}>Website</div>
         </div>
-        <div style={{
-          display: this.state.showMore ? 'flex' : 'none',
-          justifyContent: 'left',
-          fontSize: '14px',
-          fontWeight: '400',
-          lineHeight: '20px',
-          paddingLeft: '29px',
-          cursor: "pointer",
-          textDecoration: this.state.hoverWebsite ? 'underline' : 'none',
-        }}
+        <div style={newWebiste}
         onMouseEnter={this.toggleWebsiteHover}
         onMouseLeave={this.toggleWebsiteHover}>{rest.website}</div>
 
         {/* PHONE NUMBER */}
         <div style={{ display: this.state.showMore ? 'flex' : 'none', paddingTop: '15px' }}>
           {doodles[12]}
-          <div style={boldText}>Phone number</div>
+          <div style={style.boldText}>Phone number</div>
         </div>
         <div style={{ display: this.state.showMore ? 'flex' : 'none'}}>
-          <div style={subText}>{rest.phone_number}</div>
+          <div style={style.subText}>{rest.phone_number}</div>
         </div>
 
 
         {/* VIEW MORE: */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'left',
-          fontSize: '14px',
-          fontWeight: '400',
-          lineHeight: '20px',
-          color: '#da3743',
-          fontFamily: 'BlinkMacSystemFont',
-          paddingTop: "15px",
-          textDecoration: this.state.hoverViewMore ? 'underline' : 'none',
-          cursor: "pointer",
-        }} 
+        
+        <div style={newViewMore}
         onMouseEnter={this.toggleViewMoreHover} 
         onMouseLeave={this.toggleViewMoreHover}
         onClick={this.showMore}>

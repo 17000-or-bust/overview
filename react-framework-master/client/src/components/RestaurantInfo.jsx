@@ -1,4 +1,5 @@
 import React from 'react';
+import style from '../../../style';
 
 class RestaurantInfo extends React.Component {
   constructor(props) {
@@ -11,9 +12,9 @@ class RestaurantInfo extends React.Component {
       <div>
         <div style={{ display: 'flex', paddingTop: '15px' }}>
         {this.props.doodles[this.props.index + 4]}
-        <div style={this.props.boldText}>{this.props.title}</div>
+        <div style={style.boldText}>{this.props.title}</div>
       </div>
-      <div style={this.props.subText}>
+      <div style={style.subText}>
         {
           this.props.rest[this.props.restFields[this.props.index]]
         }
