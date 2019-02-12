@@ -95,7 +95,7 @@ class App extends React.Component {
           <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${rest.latitude},${rest.longitude}&zoom=15&size=288x144&maptype=roadmap&markers=color:0x2495BF|%7C${rest.latitude},${rest.longitude}&key=${googleKey}`}></img>
           <div style={style.padTop}>
             {doodles[0]}
-            <a href='' className="hover" style={newAddress} onMouseEnter={this.handleToggle}
+            <a href=' ' className="hover" style={newAddress} onMouseEnter={this.handleToggle}
              onMouseLeave={this.handleToggle}>{rest.street_address}</a>
           </div>
         </div>
