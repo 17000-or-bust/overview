@@ -1,5 +1,3 @@
-import App from './client/src/components/App.jsx'
-
 const style = {
   boldText: {
     fontSize: '14px',
@@ -18,8 +16,9 @@ const style = {
   googleMap: {
     display: 'flex',
     flexDirection: 'column',
-    border: '1px solid grey',
-    padding: '5px',
+    border: '1px solid #d8d9db',
+    borderRadius: '4px',
+    padding: '.25rem .25rem .5rem',
   },
   padTop: {
     display: 'flex', 

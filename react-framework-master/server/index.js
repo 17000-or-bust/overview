@@ -4,7 +4,6 @@ const port = 3000;
 const path = require('path');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/restaurants');
-const faker = require('faker');
 var db = mongoose.connection;
 const bodyParser = require('body-parser');
 

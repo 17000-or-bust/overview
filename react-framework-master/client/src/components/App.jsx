@@ -3,7 +3,7 @@ import $ from 'jquery';
 import RestaurantInfo from './RestaurantInfo.jsx';
 import googleKey from '../../../api';
 import style from '../../../style';
-
+import helpers from '../../../helpers';
 
 const doodles = [
   <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" style={{ background: 'rgb(255, 255, 255)' }}><title>icon/ic_location</title><desc>Created with Sketch.</desc><defs></defs><g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="icon/ic_location"><g id="ic_location"><rect id="boundary" x="0" y="0" width="24" height="24"></rect><path d="M12,9 C12.5522847,9 13,9.44771525 13,10 C13,10.5522847 12.5522847,11 12,11 C11.4477153,11 11,10.5522847 11,10 C11,9.44771525 11.4477153,9 12,9 L12,9 Z M12,7 C10.3431458,7 9,8.34314575 9,10 C9,11.6568542 10.3431458,13 12,13 C13.6568542,13 15,11.6568542 15,10 C15,8.34314575 13.6568542,7 12,7 Z" id="Shape" fill="#333333" fillRule="nonzero"></path><path d="M12,4 C15.3137085,4 18,6.6862915 18,10 C18,11.21 17.2,14 12,19.21 C6.8,14 6,11.21 6,10 C6,6.6862915 8.6862915,4 12,4 L12,4 Z M12,2 C7.581722,2 4,5.581722 4,10 C4,12.8133333 6.43333333,16.59 11.3,21.33 L11.3,21.33 C11.6888435,21.7111429 12.3111565,21.7111429 12.7,21.33 C17.5666667,16.59 20,12.8133333 20,10 C20,5.581722 16.418278,2 12,2 Z" id="Shape" fill="#333333" fillRule="nonzero"></path></g></g></g></svg>,
@@ -21,26 +21,6 @@ const doodles = [
   <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" style={{ background: 'rgb(255, 255, 255)' }}><title>icon/ic_phone</title><desc>Created with Sketch.</desc><defs></defs><g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="icon/ic_phone"><g id="ic_phone"><rect id="Rectangle-path" x="0" y="0" width="24" height="24"></rect><path d="M3.6078908,10.550251 C2.61923908,11.0680258 1.99972271,12.0918108 1.99971837,13.2078404 L1.99971837,15.6072816 C1.99971837,16.1595664 2.44743362,16.6072816 2.99971837,16.6072816 L6.3793488,16.6072816 C6.82186328,16.6072816 7.21175771,16.3164463 7.33787494,15.892282 C7.82877775,14.2412802 8.56739585,13.2739483 9.74971837,13.2739483 L10.3982265,13.2739469 L10.9997198,13.2739459 C11.9349601,13.2739449 11.9349601,13.2739449 12.2508894,13.273949 C13.457624,13.275362 14.2165836,14.245409 14.6845206,15.8821632 C14.8072329,16.3113873 15.1995808,16.6072842 15.6460041,16.6072816 L18.9997184,16.6072816 C19.5520031,16.6072816 19.9997184,16.1595664 19.9997184,15.6072816 L19.9997184,13.2078497 C19.9997184,12.09182 19.3802043,11.0680343 18.3915552,10.5502559 C15.911882,9.25160463 13.451313,8.60728164 10.9997184,8.60728164 C8.54812677,8.60728164 6.08756091,9.25160303 3.6078908,10.550251 Z" id="Shape" stroke="#333333" strokeWidth="2" transform="translate(10.999718, 12.607282) rotate(-135.000000) translate(-10.999718, -12.607282) "></path></g></g></g></svg>
 ];
 
-const titles = [
-  'Cuisines',
-  'Dining Style',
-  'Dress code',
-  'Payment options',
-  'Executice chef',
-  'Entertainment',
-  'Additional',
-];
-
-const restFields = [
-  'food_type',
-  'dining_style',
-  'dress_code',
-  'payment_options',
-  'chef',
-  'entertainment',
-  'additional_info',
-]
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -53,10 +33,7 @@ class App extends React.Component {
       showMore: false,
     };
     this.getRestaurantByObjectId = this.getRestaurantByObjectId.bind(this);
-    this.toggleHover = this.toggleHover.bind(this);
-    this.toggleNeighborHover = this.toggleNeighborHover.bind(this);
-    this.toggleViewMoreHover = this.toggleViewMoreHover.bind(this);
-    this.toggleWebsiteHover = this.toggleWebsiteHover.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
     this.showMore = this.showMore.bind(this);
   }
 
@@ -78,28 +55,11 @@ class App extends React.Component {
     });
   }
 
-  toggleHover() {
+  handleToggle(event) {
+    var hoverElement = event.target.className;
     this.setState({
-      hover: !this.state.hover,
-    });
-  }
-
-  toggleNeighborHover() {
-    this.setState({
-      hoverNeighbor: !this.state.hoverNeighbor,
-    });
-  }
-
-  toggleWebsiteHover() {
-    this.setState({
-      hoverWebsite: !this.state.hoverWebsite,
-    });
-  }
-
-  toggleViewMoreHover() {
-    this.setState({
-      hoverViewMore: !this.state.hoverViewMore,
-    });
+      [hoverElement]: !this.state[hoverElement],
+    })
   }
 
   showMore() {
@@ -136,8 +96,8 @@ class App extends React.Component {
           <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${rest.latitude},${rest.longitude}&zoom=15&size=288x144&maptype=roadmap&markers=color:0x2495BF|%7C${rest.latitude},${rest.longitude}&key=${googleKey}`}></img>
           <div style={style.padTop}>
             {doodles[0]}
-            <a href='' style={newAddress} onMouseEnter={this.toggleHover}
-             onMouseLeave={this.toggleHover}>{rest.street_address}</a>
+            <a href='' className="hover" style={newAddress} onMouseEnter={this.handleToggle}
+             onMouseLeave={this.handleToggle}>{rest.street_address}</a>
           </div>
         </div>
 
@@ -153,9 +113,9 @@ class App extends React.Component {
           {doodles[2]}
           <div style={style.boldText}>Neighborhood</div>
         </div>
-        <div style={newNeighborhood}
-        onMouseEnter={this.toggleNeighborHover}
-        onMouseLeave={this.toggleNeighborHover}>{rest.neighborhood}</div>
+        <div className="hoverNeighbor" style={newNeighborhood}
+        onMouseEnter={this.handleToggle}
+        onMouseLeave={this.handleToggle}>{rest.neighborhood}</div>
 
         {/* HOURS OF OPERATION */}
         <div style={style.padTop}>
@@ -170,15 +130,15 @@ class App extends React.Component {
         <div style={style.subText}>{"Monday to Friday " + rest.dinner_hrs}</div>
 
         {/* REMAINING INFO (MINUS WEBSITE AND PHONE) */}
-        {titles.map(title => <RestaurantInfo
+        {helpers.titles.map(title => <RestaurantInfo
           style={style.boldText}
           subText={style.subText}
           rest={rest}
           doodles={doodles}
           title={title}
-          restFields={restFields}
-          key={titles.indexOf(title)}
-          index={titles.indexOf(title)}/>
+          restFields={helpers.restFields}
+          key={helpers.titles.indexOf(title)}
+          index={helpers.titles.indexOf(title)}/>
         )}
 
         {/* WEBSITE */}
@@ -186,9 +146,9 @@ class App extends React.Component {
           {doodles[11]}
           <div style={style.boldText}>Website</div>
         </div>
-        <div style={newWebiste}
-        onMouseEnter={this.toggleWebsiteHover}
-        onMouseLeave={this.toggleWebsiteHover}>{rest.website}</div>
+        <div className="hoverWebsite" style={newWebiste}
+        onMouseEnter={this.handleToggle}
+        onMouseLeave={this.handleToggle}>{rest.website}</div>
 
         {/* PHONE NUMBER */}
         <div style={{ display: this.state.showMore ? 'flex' : 'none', paddingTop: '15px' }}>
@@ -202,9 +162,9 @@ class App extends React.Component {
 
         {/* VIEW MORE: */}
         
-        <div style={newViewMore}
-        onMouseEnter={this.toggleViewMoreHover} 
-        onMouseLeave={this.toggleViewMoreHover}
+        <div className="hoverViewMore" style={newViewMore}
+        onMouseEnter={this.handleToggle} 
+        onMouseLeave={this.handleToggle}
         onClick={this.showMore}>
         
         {this.state.showMore ? "- View less" : "+ View more"}
