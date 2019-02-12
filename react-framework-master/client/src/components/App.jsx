@@ -69,7 +69,6 @@ class App extends React.Component {
   }
 
   render() {
-    // TODO: Break up into smaller componenets
     const rest = this.state.restaurant;
 
     // DYNAMIC CSS DEFINITIONS
