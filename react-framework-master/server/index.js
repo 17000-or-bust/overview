@@ -15,19 +15,19 @@ app.use(express.static(path.join(__dirname, "../client/dist")))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-app.post('/overview', function (req, res) {
-	db.collection("restaurants").find().toArray(function (err, result) {
+app.get('/overview/:restaurantId', function (req, res) {
+	db.collection("restaurants").find( {"id": Number(req.params.restaurantId)}).toArray(function (err, result) {
 		if(err) {
 			throw err;
 		}
+		res.send(result);
 		console.log("==SUCCESS==")
-		res.send(JSON.stringify(result[0]))
 	});
-  //res.send(result)
 })
 
 
 var Restaurant = mongoose.model('Restaurant', {
+	id: Number,
 	price_min: Number,
 	price_max: Number,
 	food_type: String,
@@ -56,7 +56,10 @@ var Restaurant = mongoose.model('Restaurant', {
 // var randomName = faker.helpers.replaceSymbols("hello # hi # hello")
 // console.log('fake name: ', randomName);
 
+// for(var i = 1; i <= 100; i++) {
+
 // var dummyData = new Restaurant({
+// 	id: i,
 // 	price_min: faker.random.number(),
 // 	price_max: faker.random.number(),
 // 	food_type: faker.lorem.word(),
@@ -65,17 +68,17 @@ var Restaurant = mongoose.model('Restaurant', {
 // 	tag_three: faker.lorem.word(),
 // 	cross_street: faker.lorem.word(),
 // 	neighborhood: faker.lorem.word(),
-// 	brunch_hrs: faker.helpers.replaceSymbols("#:00 am - #:00 pm"),
-// 	lunch_hrs: faker.helpers.replaceSymbols("#:00 am - #:00 pm"),
-// 	dinner_hrs: "5:00 pm - 10:00 pm",
+// 	brunch_hrs: faker.helpers.replaceSymbols("#:00 am to #:00 pm"),
+// 	lunch_hrs: faker.helpers.replaceSymbols("#:00 am to #:00 pm"),
+// 	dinner_hrs: "5:00 pm to 10:00 pm",
 // 	dining_style: faker.lorem.word(),
 // 	dress_code: faker.lorem.word(),
-// 	payment_options: faker.lorem.words(),
+// 	payment_options: faker.lorem.word() + ", " + faker.lorem.word() + ", " + faker.lorem.word(),
 // 	chef: faker.name.firstName(),
-// 	entertainment:  faker.lorem.words(),
-// 	additional_info:  faker.lorem.words(),
+// 	entertainment:  faker.lorem.word() + ", " + faker.lorem.word() + ", " + faker.lorem.word(),
+// 	additional_info:  faker.lorem.word() + ", " + faker.lorem.word() + ", " + faker.lorem.word(),
 // 	website: faker.internet.url(),
-// 	phone_number: faker.phone.phoneNumber(),
+// 	phone_number: faker.helpers.replaceSymbols("(###) ###-####"),
 // 	longitude: faker.address.longitude(),
 // 	latitude: faker.address.latitude(),
 // 	street_address: faker.address.streetAddress()
@@ -88,3 +91,5 @@ var Restaurant = mongoose.model('Restaurant', {
 //     console.log('SAVED');
 //   }
 // });
+
+// }
