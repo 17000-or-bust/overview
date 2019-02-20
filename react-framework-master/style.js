@@ -1,7 +1,7 @@
 const style = {
   boldText: {
     fontSize: '14px',
-    fontWeight: '700',
+    fontWeight: '500',
     lineHeight: '20px',
     paddingLeft: '5px',
   },
@@ -12,6 +12,7 @@ const style = {
     fontWeight: '400',
     lineHeight: '20px',
     paddingLeft: '29px',
+    fontFamily: 'Arial'
   },
   googleMap: {
     display: 'flex',

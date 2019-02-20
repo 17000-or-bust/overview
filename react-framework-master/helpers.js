@@ -5,8 +5,8 @@ const helpers = {
     'Dress code',
     'Payment options',
     'Executice chef',
-    'Entertainment',
-    'Additional',
+    // 'Entertainment',
+    // 'Additional',
   ],
   restFields: [
     'food_type',
@@ -14,8 +14,8 @@ const helpers = {
     'dress_code',
     'payment_options',
     'chef',
-    'entertainment',
-    'additional_info',
+    // 'entertainment',
+    // 'additional_info',
   ],
 }
 

@@ -4,10 +4,9 @@ body {
 }
 
 #main {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-flow: row-reverse wrap-reverse;
   width: 100%;
   margin: auto;
-  text-align: center;
+  text-align: center; */
 }
