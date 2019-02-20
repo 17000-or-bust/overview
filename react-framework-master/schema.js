@@ -1,3 +1,8 @@
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/restaurants');
+var faker = require('faker');
+// var db = mongoose.connection;
+
 var Restaurant = mongoose.model('Restaurant', {
 	id: Number,
 	price_min: Number,
