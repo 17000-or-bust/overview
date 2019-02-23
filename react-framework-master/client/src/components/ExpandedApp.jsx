@@ -24,7 +24,16 @@ const doodles = [
 class ExpandedApp extends React.Component {
   constructor(props) {
     super(props);
+    let id = 1;
+
+    const pathName = window.location.pathname.split('/');
+    const restaurantId = parseInt(pathName[1], 10);
+    if (!Number.isNaN(restaurantId)) {
+      id = restaurantId
+    }
+
     this.state = {
+      resId: id,
       restaurant: [],
       hover: false,
       hoverNeighbor: false,
@@ -55,16 +64,16 @@ class ExpandedApp extends React.Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
-  getRestaurantByObjectId() {
+  getRestaurantByObjectId(id) {
     $.ajax({
       // hardcoded 17
-      //url: '/overview/17',
-      url: 'http://localhost:3000/overview/17',
+      url: `http://localhost:3000/overview/${id}`,
       method: 'GET',
       contentType: 'application/json',
       success: (data) => {
         this.setState({
           restaurant: data[0],
+          restaurantDescSplit: data[0].description.match(/.{78}/g)
         });
       },
     });
