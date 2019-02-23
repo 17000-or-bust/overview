@@ -5,6 +5,10 @@ var faker = require('faker');
 
 var Restaurant = mongoose.model('Restaurant', {
 	id: Number,
+	name: String,
+	ratings_num: Number,
+	rating: Number,
+	description: String,
 	price_min: Number,
 	price_max: Number,
 	food_type: String,
@@ -34,8 +38,12 @@ for(var i = 1; i <= 100; i++) {
 
 var dummyData = new Restaurant({
 	id: i,
-	price_min: faker.random.number(),
-	price_max: faker.random.number(),
+	name: faker.lorem.word(),
+	rating: Math.random()*(3.9-3.1+1)+3,
+	ratings_num: Math.floor(Math.random()*(1000-100+1)+100),
+	price_min: Math.floor(Math.random()*(20-15+1)+15),
+	price_max: Math.floor(Math.random()*(50-20+1)+20),
+	description: faker.lorem.paragraph() + faker.lorem.paragraph(),
 	food_type: faker.lorem.word(),
 	tag_one: faker.lorem.word(),
 	tag_two: faker.lorem.word(),

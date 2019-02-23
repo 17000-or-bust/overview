@@ -29,7 +29,7 @@ class App extends React.Component {
   render() {
 
     return (
-      this.state.width < 1055 ? <CompressedApp /> : <ExpandedApp />
+      /*this.state.width < 1055 ? <CompressedApp /> : */<ExpandedApp />
     );
   }
 }
