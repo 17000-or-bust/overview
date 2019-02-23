@@ -58,7 +58,8 @@ class ExpandedApp extends React.Component {
   getRestaurantByObjectId() {
     $.ajax({
       // hardcoded 17
-      url: '/overview/17',
+      //url: '/overview/17',
+      url: 'http://localhost:3000/overview/17',
       method: 'GET',
       contentType: 'application/json',
       success: (data) => {
