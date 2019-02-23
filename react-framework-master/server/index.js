@@ -34,3 +34,5 @@ app.get('/overview/:restaurantId', function (req, res) {
 		console.log("==SUCCESS==")
 	});
 })
+
+app.use('/:id', express.static(path.join(__dirname, '../public')))
