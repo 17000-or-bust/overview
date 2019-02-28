@@ -7,7 +7,6 @@ mongoose.connect('mongodb://localhost/restaurants');
 var db = mongoose.connection;
 const bodyParser = require('body-parser');
 var cors = require('cors')
- 
 app.use(cors())
  
 app.get('/products/:id', function (req, res, next) {
@@ -33,6 +32,6 @@ app.get('/overview/:restaurantId', function (req, res) {
 		res.send(result);
 		console.log("==SUCCESS==")
 	});
-})
+});
 
 app.use('/:id', express.static(path.join(__dirname, '../public')))
