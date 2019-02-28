@@ -31,6 +31,7 @@ Returns a `{ restaurant }` at a given restaurant id.
    |`dinner_hrs`     |String  |
    |`food_type`      |String  |
    |`dining_style`   |String  |
+   |`dress_code`     |String  |
    |`payment_options`|String  |
    |`chef`           |String  |
    |`website`        |String  |
@@ -59,6 +60,7 @@ Returns the `id` of the reservation created in the database.
    |`dinner_hrs`     |String  |
    |`food_type`      |String  |
    |`dining_style`   |String  |
+   |`dress_code`     |String  |
    |`payment_options`|String  |
    |`chef`           |String  |
    |`website`        |String  |
@@ -95,6 +97,7 @@ Returns the `restaurantId (number)` of the reservation edited in the database.
    |`dinner_hrs`     |String  |
    |`food_type`      |String  |
    |`dining_style`   |String  |
+   |`dress_code`     |String  |
    |`payment_options`|String  |
    |`chef`           |String  |
    |`website`        |String  |
@@ -132,6 +135,7 @@ Returns the `{ Restaurant }` deleted from the database.
    |`dinner_hrs`     |String  |
    |`food_type`      |String  |
    |`dining_style`   |String  |
+   |`dress_code`     |String  |
    |`payment_options`|String  |
    |`chef`           |String  |
    |`website`        |String  |
