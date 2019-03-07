@@ -2,22 +2,22 @@
 
  ## <a style="color: #333333">Table of Contents</a>
 * [**Restaurants.restaurant**](#restaurantsrestaurant)
-    * [GET /api/overview/:restaurantId](#get-restaurantid)
-    * [POST /api/overview](#post-restaurantid)
-    * [PUT /api/overview/:restaurantId](#put-restaurantid)
-    * [DELETE /api/overview/:restaurantId](#delete-restaurantid)
+    * [GET /overview/:id](#get-restaurantid)
+    * [POST /overview](#post-restaurantid)
+    * [PUT /overview/:id](#put-restaurantid)
+    * [DELETE /overview/:id](#delete-restaurantid)
 <hr>
 
  ## Restaurants.restaurants
-### `GET /api/overview/:restaurantId`
+### `GET /overview/:id`
 Returns a `{ restaurant }` at a given restaurant id.
 
  **URL Params**
-  * `restaurantId` _(Number)_ : ID of the restaurant that will retrieve relevant details
+  * `id` _(Number)_ : ID of the restaurant that will retrieve relevant details
 
  **Success Response:**
   * **Status Code:** 200
-  * **Content:** `{ restaurant }` conforming to the following format:
+  * **Content:** `{ Overview }` conforming to the following format:
 
    |Key              |Type    |
    |:--------------- |:------ |
@@ -76,11 +76,11 @@ Returns the `id` of the reservation created in the database.
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
- ### `PUT /api/overview/:restaurantId`
+ ### `PUT /overview/:id`
 Returns the `restaurantId (number)` of the reservation edited in the database.
 
  **URL Params**
-  * `restaurantId` _(Number)_ : ID of the reservation to update
+  * `id` _(Number)_ : ID of the reservation to update
 
  **Payload Params**
   * Valid `{ JSON }` object conforming to the following format:
@@ -107,21 +107,21 @@ Returns the `restaurantId (number)` of the reservation edited in the database.
 
  **Success Response:**
   * **Status Code:** 201
-  * **Content:** `{ restaurant_id: id (Number) }`
+  * **Content:** `{ id: id (Number) }`
 
  **Error Response:**
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
- ### `DELETE /api/overview/:restaurantId`
-Returns the `{ Restaurant }` deleted from the database.
+ ### `DELETE /overview/:id`
+Returns the `{ Overview }` deleted from the database.
 
  **URL Params**
-  * `restaurantId` _(Number)_ : ID of the Restaurant to be delete
+  * `id` _(Number)_ : ID of the Restaurant to be delete
 
  **Success Response:**
   * **Status Code:** 200
-  * **Content:** `{ Restaurant }` conforming to the following format:
+  * **Content:** `{ Overview }` conforming to the following format:
 
    |Key              |Type    |
    |:--------------- |:------ |
