@@ -6,15 +6,14 @@ const fackerHelper = require('./fackerHelper.js');
 
 console.log(`Rendering Data At: ${moment().format('HH:MM:SS')}`);
 
-const resWriteable = fs.createWriteStream('./PostgreServer/generator/overview.csv');
+const resWriteable = fs.createWriteStream('./PostgreServer/overview.csv');
 
 const seedOverview = () => {
 	let buffer = '';
 	for (let i = 0; i < 1000; i++) {
 
 		for (var k = 0; k < 10000; k++) {
-
-			const restaurant_id = (i * 10000) + k;
+			const restaurant_id = fackerHelper.randomNumGen(9999, 0);
 			const street_address = fackerHelper.address();
 			const cross_street = fackerHelper.crossSt();
 			const neighborhood = fackerHelper.Neigh();

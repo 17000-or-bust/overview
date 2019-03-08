@@ -59,6 +59,7 @@ let longitudeGen = () => {
 };
  console.log(longitudeGen());
 module.exports = {
+	randomNumGen,
 	address,
 	crossSt,
 	Neigh,
