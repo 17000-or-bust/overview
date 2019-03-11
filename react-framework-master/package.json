@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack -d --watch",
-    "start": "nodemon PostgreServer/index.js",
+    "start": "node PostgreServer/index.js",
     "seed": "node schema.js",
     "data-generate": "node PostgreServer/generator/index.js",
     "test": "jest --verbose --coverage"

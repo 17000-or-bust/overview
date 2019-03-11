@@ -27,6 +27,7 @@ const restaurantId = parseInt(pathName[1], 10);
 if (!Number.isNaN(restaurantId)) {
 	id = restaurantId
 }
+console.log(id);
 
 class ExpandedApp extends React.Component {
   constructor(props) {
