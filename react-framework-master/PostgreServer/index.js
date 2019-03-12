@@ -1,11 +1,16 @@
+require('newrelic');
 const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 const port = 3000; //note...somes you should use diffrent ports
+
 
 const controllers = require('./controllers/methods.js'); //this has you get access to getAllData
 
+app.use(cors())
 //this will help make the data readable
 app.use(bodyParser.json());
 

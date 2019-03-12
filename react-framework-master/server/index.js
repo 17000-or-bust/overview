@@ -21,9 +21,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
-app.use(express.static(path.join(__dirname, "../client/dist")))
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 app.get('/overview/:restaurantId', function (req, res) {
 	db.collection("restaurants").find( {"restaurant_id": Number(req.params.restaurantId)}).toArray(function (err, result) {
@@ -54,4 +54,4 @@ app.delete('/overview/:restaurantId', function (req, res) {
 		}).catch(err => console.log(err));
 });
 
-app.use('/:id', express.static(path.join(__dirname, '../public')))
+app.use('/:id', express.static(path.join(__dirname, '../public')));
