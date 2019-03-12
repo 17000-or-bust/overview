@@ -18,7 +18,7 @@ exports.getSingleResturant = (request, response) => {
 			console.log(error);
 			return;
 		}
-		response.status(200).send(results.rows[0])
+		response.status(200).send(results)
 	});
 };
 //this is for creating
