@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack -d --watch",
+    "react-prod" : "webpack -p --watch" ,
     "start": "node PostgreServer/index.js",
     "seed": "node schema.js",
     "data-generate": "node PostgreServer/generator/index.js",

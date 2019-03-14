@@ -81,7 +81,7 @@ class ExpandedApp extends React.Component {
       success: (data) => {
         console.log(data);
         this.setState({
-          restaurant: data.rows[0],
+          restaurant: data,
           //restaurantDescSplit: data.rows[0].description.match(/.{78}/g)
         });
       },
